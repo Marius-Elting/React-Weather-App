@@ -1,25 +1,28 @@
 import './Input.css';
-
-
-
+import { useRef } from 'react';
 
 function Input({ getCity }) {
-    let cityInput;
+    const inputRef = useRef();
 
     function handleCity(city) {
         getCity(city);
     }
-    window.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
 
-            handleCity(cityInput);
+    window.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+            console.log(inputRef.current.value);
+
+            handleCity(inputRef.current.value);
+            // cityInput = "";
+
         }
     });
+
     return (
         <div>
             <div className="SearchDiv">
-                <input placeholder='Stadt-Name' onChange={(e) => cityInput = e.target.value}></input>
-                <button onClick={() => handleCity(cityInput)}>Suchen</button>
+                <input placeholder='Stadt-Name' ref={inputRef} ></input>
+                <button onClick={() => handleCity(inputRef.current.value)}>Suchen</button>
             </div>
             <div className="buttonDiv">
                 <button onClick={() => handleCity("Berlin")}>Berlin</button>
