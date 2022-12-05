@@ -1,8 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import './CurrentWeather.css';
-
+import { useState } from 'react';
 function CurrentWeather(props) {
-    const [input, setInput] = useState([]);
+    const [state, setState] = useState("none");
+    const [Text, setText] = useState("Mehr Anzeigen ▼");
     if (props.weatherData.weather === undefined) {
         return;
     }
@@ -54,6 +55,11 @@ function CurrentWeather(props) {
                 <p>Momentan herscht in {props.city} {props.weatherData.weather[0].description} bei {(props.weatherData.main.temp - 274.15).toFixed(2) + "°C"}</p>
                 <p>{props.weatherData.wind.speed + " m/s " + windDirection}</p>
             </article>
+            <button className='mehr Anzeigen' onClick={() => { setState(state === "none" ? "block" : "none"); setText(Text === "Mehr Anzeigen ▼" ? " Weniger Anzeigen ▲" : "Mehr Anzeigen ▼"); }}>  {Text}</button>
+            <div style={{ display: state }}>
+                <p>Sonnenaufgang: {(new Date(props.weatherData.sys.sunrise * 1000 + props.weatherData.timezone * 1000 - 3600 * 1000)).toLocaleTimeString(props.weatherData.sys.country)}</p>
+                <p>Sonnenuntergang: {(new Date(props.weatherData.sys.sunset * 1000 + props.weatherData.timezone * 1000 - 3600 * 1000)).toLocaleTimeString(props.weatherData.sys.country)}</p>
+            </div>
         </section>
     );
 };

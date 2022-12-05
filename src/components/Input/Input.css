@@ -1,5 +1,5 @@
 :root {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .SearchDiv {
@@ -63,4 +63,8 @@ input:focus {
     padding: 10px;
     border-radius: 10px;
     width: 550px;
+}
+
+button:hover {
+    cursor: pointer;
 }

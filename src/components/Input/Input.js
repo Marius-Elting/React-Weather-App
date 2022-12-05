@@ -18,7 +18,7 @@ function Input({ getCity }) {
     return (
         <div>
             <div className="SearchDiv">
-                <input onChange={(e) => cityInput = e.target.value}></input>
+                <input placeholder='Stadt-Name' onChange={(e) => cityInput = e.target.value}></input>
                 <button onClick={() => handleCity(cityInput)}>Suchen</button>
             </div>
             <div className="buttonDiv">
